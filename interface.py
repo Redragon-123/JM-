@@ -32,7 +32,10 @@ def view_tasks(tasks, only_pending=False):
             arr = sorted(base, key=_priority_value, reverse=True)  # low→high
             display_tasks(arr)
         elif sub == "4":
-            display_group_by_tag(base)
+            sorted_list = sort_all_tasks(todo_data, by="deadline")
+            print("\nlisted by deadline:")
+            for task in sorted_list:
+                print(task)
         elif sub == "5":
             tag = input("please input tags:").strip()
             if not tag:
