@@ -1,1 +1,19 @@
+from datetime import datetime
 
+def sort_all_tasks(todo_data, by="date"):
+    all_tasks = []
+    for category_tasks in todo_data.values():
+        all_tasks.extend(category_tasks)
+
+    if by == "date":
+        sorted_tasks = sorted(
+            all_tasks,
+            key=lambda x: datetime.strptime(x["date"], "%Y-%m-%d %H:%M:%S")
+        )
+    elif by == "priority":
+        sorted_tasks = sorted(all_tasks, key=lambda x: x["priority"])
+    else:
+        print("Unsupported Sorting Method")
+        return all_tasks
+
+    return sorted_tasks
